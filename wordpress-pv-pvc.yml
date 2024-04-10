@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wordpress-pv
+  labels:
+    type: hostpath
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  hostPath:
+    type: DirectoryOrCreate
+    path: "/opt/ "
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: wordpress-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Mi
+
